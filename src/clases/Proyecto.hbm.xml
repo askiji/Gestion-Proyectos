@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 2 feb 2023 17:33:59 by Hibernate Tools 5.4.33.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="orm_gestion_Proyectos" name="clases.Proyecto" optimistic-lock="none" table="proyecto">
+        <id name="idProyecto" type="int">
+            <column name="id_proyecto"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="clases.Empleado" fetch="select" name="empleado">
+            <column length="9" name="dni_jefe_proyecto" not-null="true"/>
+        </many-to-one>
+        <property name="nomProyecto" type="string">
+            <column length="32" name="nom_proyecto" not-null="true"/>
+        </property>
+        <property name="fechaIni" type="date">
+            <column length="10" name="fecha_ini" not-null="true"/>
+        </property>
+        <property name="fechaFin" type="date">
+            <column length="10" name="fecha_fin"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="asignaProyectos" table="asigna_proyecto">
+            <key>
+                <column name="id_proyecto" not-null="true"/>
+            </key>
+            <one-to-many class="clases.AsignaProyecto"/>
+        </set>
+    </class>
+</hibernate-mapping>
