@@ -27,7 +27,7 @@ public class Ejercicio6 {
 	private static void ejercicio6(Session s) {
 		// empezamos con los datos profesionales porque son necesarios para 
 		// crear el empleado con los datos profesionales
-		
+		//creamos una transaccio para que no tengamos problemas si no funciona
 		Transaction t = s.beginTransaction();
 		try {
 			
@@ -38,6 +38,7 @@ public class Ejercicio6 {
 			e.setDatosProfesionales(dp);
 			// generamso la query del empleado con us dni
 			String dniEmpleado = "01";
+			//Creamos las query para buscar en base de datos
 			Query q = s.createQuery("from Empleado where dni like :dni");
 			q.setParameter("dni", dniEmpleado).setMaxResults(1);
 			Empleado eSegundo = (Empleado) q.getSingleResult();
@@ -45,9 +46,9 @@ public class Ejercicio6 {
 			DatosProfesionales dp1 = new DatosProfesionales(eSegundo, "01", new BigDecimal(33333.0));
 			s.saveOrUpdate(e);
 			s.saveOrUpdate(dp);
-			//s.saveOrUpdate(dp1);
-			System.out.println("Termina el programa");
+			// hacemos el comit para que se cumplan los cambios
 			t.commit();
+			
 		} catch (Exception e2) {
 			// TODO: handle exception
 			System.out.println("Error");

@@ -9,6 +9,11 @@ import java.util.Set;
  */
 public class Empleado implements java.io.Serializable {
 
+	@Override
+	public String toString() {
+		return "Empleado [dni=" + dni + ", nomEmp=" + nomEmp + ", asignaProyectos="  + datosProfesionales +  "]";
+	}
+
 	private String dni;
 	private String nomEmp;
 	private Set asignaProyectos = new HashSet(0);

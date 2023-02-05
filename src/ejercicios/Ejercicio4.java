@@ -25,23 +25,28 @@ public class Ejercicio4 {
 
 
 	private static void ejercicio4(Session s) {
+		// creamos una transaccio para que no tengamos problemas si no funciona
 		Transaction t = s.beginTransaction();
 		try {
+			// Creamos los empleados y los guardamos
 			Empleado e1 = new Empleado("01","Numero1");
 			Empleado e2 = new Empleado("02","Numero2");
 			Empleado e3 = new Empleado("03","Numero3");
 			s.saveOrUpdate(e1);
 			s.saveOrUpdate(e2);
 			s.saveOrUpdate(e3);
+			// Creamos las fechas
 			Date d1 = new Date(2023-1900, 1, 1);
 			Date d2 = new Date(2023-1900, 2, 2);
 			Date d3 = new Date(2023-1900, 3, 3);
+			//Creamos lo proyectos y los guardamos
 			Proyecto p1 = new Proyecto(1, e1, "Proyecto1", d1);
 			Proyecto p2 = new Proyecto(2, e2, "Proyecto2", d2);
 			Proyecto p3 = new Proyecto(3, e3, "Proyecto3", d3);
 			s.saveOrUpdate(p1);
 			s.saveOrUpdate(p2);
 			s.saveOrUpdate(p3);
+			// hacemos el comit para que se cumplan los cambios
 			t.commit();
 			
 		} catch (Exception e) {
